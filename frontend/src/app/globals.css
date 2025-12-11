@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+}
+
+@keyframes hero-float {
+	0% {
+		transform: translateY(0px);
+	}
+	50% {
+		transform: translateY(-6px);
+	}
+	100% {
+		transform: translateY(0px);
+	}
+}
+
+.hero-float-slow {
+	animation: hero-float 6s ease-in-out infinite;
+}
+
+.hero-float-fast {
+	animation: hero-float 4s ease-in-out infinite;
+}
+
+@keyframes fade-in {
+	0% {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0px);
+	}
+}
+
+.animate-fade-in {
+	animation: fade-in 0.8s ease-out forwards;
+}
+
+@keyframes support-bounce {
+	0%, 100% {
+		transform: translateY(0);
+	}
+	30% {
+		transform: translateY(-6px);
+	}
+	60% {
+		transform: translateY(-2px);
+	}
+}
+
+.animate-support-bounce {
+	animation: support-bounce 1.4s ease-in-out infinite;
+}
+
+@keyframes chat-pop {
+	0% {
+		opacity: 0;
+		transform: translateY(8px) scale(0.96);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+}
+
+.animate-chat-pop {
+	animation: chat-pop 0.18s ease-out;
+}

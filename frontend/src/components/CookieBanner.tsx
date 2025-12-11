@@ -1,9 +1,32 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+const COOKIE_CONSENT_KEY = "fleet_cookie_consent";
 
 export function CookieBanner() {
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    try {
+      const stored = window.localStorage.getItem(COOKIE_CONSENT_KEY);
+      if (!stored) {
+        setVisible(true);
+      }
+    } catch {
+      // If localStorage is not available, fall back to showing banner once per session
+      setVisible(true);
+    }
+  }, []);
+
+  const handleDecision = (value: "accept" | "reject" | "personalize") => {
+    try {
+      window.localStorage.setItem(COOKIE_CONSENT_KEY, value);
+    } catch {
+      // ignore storage errors; still hide banner
+    }
+    setVisible(false);
+  };
 
   if (!visible) return null;
 
@@ -26,19 +49,19 @@ export function CookieBanner() {
         </p>
         <div className="mt-4 flex flex-wrap items-center justify-end gap-2">
           <button
-            onClick={() => setVisible(false)}
+            onClick={() => handleDecision("personalize")}
             className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-4 py-1.5 text-[12px] font-medium text-slate-800 hover:border-slate-400"
           >
             Personalize my choices
           </button>
           <button
-            onClick={() => setVisible(false)}
+            onClick={() => handleDecision("reject")}
             className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-4 py-1.5 text-[12px] font-medium text-slate-700 hover:border-slate-300"
           >
             Reject all
           </button>
           <button
-            onClick={() => setVisible(false)}
+            onClick={() => handleDecision("accept")}
             className="inline-flex items-center justify-center rounded-full bg-[#2d6a2a] px-4 py-1.5 text-[12px] font-semibold text-white shadow-sm hover:bg-[#4c8c47]"
           >
             Accept all

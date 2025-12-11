@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { ChevronDown, Truck, Package, Share2, Leaf, Briefcase, Zap, Users, Shield, MapPin } from "lucide-react";
+import { ChevronDown, Truck, Package, Share2, Leaf, Briefcase, Zap, Users, Shield, MapPin, Menu, X } from "lucide-react";
 
 const countries = [
   { code: "TZ", name: "Tanzania", flag: "🇹🇿" },
@@ -24,6 +24,7 @@ export function Header() {
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState(countries[0]);
   const [selectedLanguage, setSelectedLanguage] = useState(languages[0]);
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-20 bg-white border-b border-slate-200/50">
@@ -80,8 +81,72 @@ export function Header() {
           >
             Sign up
           </Link>
+          {/* Mobile menu toggle */}
+          <button
+            type="button"
+            className="inline-flex items-center justify-center rounded-md p-2 text-slate-700 hover:text-[#5AA354] hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-[#5AA354] focus:ring-offset-2 focus:ring-offset-white lg:hidden"
+            onClick={() => setIsMobileOpen((open) => !open)}
+            aria-label="Toggle navigation menu"
+            aria-expanded={isMobileOpen}
+          >
+            {isMobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
         </div>
       </div>
+      {/* Mobile menu panel */}
+      {isMobileOpen && (
+        <div className="border-t border-slate-200 bg-white lg:hidden">
+          <div className="mx-auto max-w-6xl px-4 py-4 space-y-3">
+            <button
+              type="button"
+              className="flex items-center gap-1 text-sm font-medium text-slate-700 hover:text-[#5AA354]"
+              onClick={() => {
+                setIsMegaOpen((open) => !open);
+              }}
+            >
+              Products
+              <ChevronDown className="h-4 w-4" />
+            </button>
+            <Link
+              href="/features"
+              className="block text-sm font-medium text-slate-700 hover:text-[#5AA354]"
+              onClick={() => setIsMobileOpen(false)}
+            >
+              Features
+            </Link>
+            <Link
+              href="/about"
+              className="block text-sm font-medium text-slate-700 hover:text-[#5AA354]"
+              onClick={() => setIsMobileOpen(false)}
+            >
+              Company
+            </Link>
+            <Link
+              href="/contact"
+              className="block text-sm font-medium text-slate-700 hover:text-[#5AA354]"
+              onClick={() => setIsMobileOpen(false)}
+            >
+              Contact
+            </Link>
+            <div className="pt-2 flex flex-col gap-2">
+              <Link
+                href="/login"
+                className="inline-flex justify-center px-4 py-2 text-sm font-medium text-slate-700 hover:text-[#5AA354]"
+                onClick={() => setIsMobileOpen(false)}
+              >
+                Login
+              </Link>
+              <Link
+                href="/register"
+                className="inline-flex justify-center rounded-lg bg-[#5AA354] px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#4c8c47]"
+                onClick={() => setIsMobileOpen(false)}
+              >
+                Sign up
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
       {/* Mega menu panel */}
       {isMegaOpen && (
         <div className="border-b border-slate-200 bg-white animate-in fade-in duration-200">

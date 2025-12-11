@@ -3,19 +3,18 @@ import Image from "next/image";
 export function Hero() {
   return (
     <section className="bg-[#f1f9f2]">
-      <div className="mx-auto flex max-w-5xl flex-col items-center px-4 py-16 text-center sm:px-6 sm:py-20 lg:px-8">
+      <div className="mx-auto flex max-w-5xl flex-col items-center px-4 py-14 text-center sm:px-6 sm:py-20 lg:px-8">
         <a
           href="/features"
-          className="mb-5 inline-flex items-center gap-3 rounded-full bg-slate-100 px-3 py-1 pr-3 text-xs font-medium text-slate-700 shadow-sm ring-1 ring-slate-200 hover:bg-slate-200/80 hover:ring-slate-300 transition"
+          className="mb-5 inline-flex max-w-full items-center gap-3 rounded-full bg-slate-100 px-3 py-1 pr-3 text-[11px] font-medium text-slate-700 shadow-sm ring-1 ring-slate-200 hover:bg-slate-200/80 hover:ring-slate-300 transition sm:text-xs"
         >
           <span className="inline-flex items-center rounded-full bg-[#1d4ed8] px-3 py-0.5 text-[11px] font-semibold text-white">
             New
           </span>
-          <span className="text-[11px] sm:text-xs font-normal text-slate-700">
-            Fleet now helps businesses manage cargo across East & Central Africa.
-            See what&apos;s new.
+          <span className="max-w-[14rem] text-left text-[11px] font-normal text-slate-700 sm:max-w-none sm:text-xs">
+            Fleet now helps businesses manage cargo across East & Central Africa. See what's new.
           </span>
-          
+        
         </a>
         <h1 className="max-w-3xl text-3xl font-semibold leading-tight tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
           Turn <span className="text-[#2d6a2a]">Fleet</span> into your
@@ -25,7 +24,7 @@ export function Hero() {
           Accept cargo requests, match verified vehicles, and manage every trip in
           one place — from pricing and KYC to GPS tracking and secure payments.
         </p>
-        <button className="mt-6 inline-flex items-center justify-center rounded-full bg-[#2d6a2a] px-8 py-3 text-sm font-semibold text-white shadow-sm hover:bg-[#4c8c47]">
+        <button className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-[#2d6a2a] px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-[#4c8c47] sm:w-auto sm:px-8 sm:text-base">
           Get started today
         </button>
 
